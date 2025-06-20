@@ -31,7 +31,7 @@ export function Login() {
         </div>
 
         <div className="pt-6 pb-4">
-          <Title title="Faça seu cadastro" />
+          <Title title="Efetue seu login" />
         </div>
 
         <form onSubmit={handleSubmit}>
@@ -45,6 +45,7 @@ export function Login() {
               onChange={(e) => setEmail(e.target.value)}
             />
           </div>
+
           <div className="pb-4">
             <Input
               label="Senha"
@@ -55,6 +56,39 @@ export function Login() {
               onChange={(e) => setSenha(e.target.value)}
             />
           </div>
+
+          <div className="pb-2 text-left">
+            <Link to="/forgot-password" className="text-blue-600 hover:underline">
+              Esqueci minha senha
+            </Link>
+          </div>
+
+          {/* Redes sociais lado a lado */}
+          <div className="flex justify-center gap-6 pb-4">
+            <div
+              className="rounded-full flex items-center justify-center shadow-lg transition-transform duration-200 hover:scale-110 hover:shadow-xl cursor-pointer"
+              style={{ width: 60, height: 60 }}
+            >
+              <img
+                src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg"
+                alt="Google"
+                className="w-[30px] h-[30px]"
+                style={{ width: 30, height: 30 }}
+              />
+            </div>
+            <div
+              className="rounded-full flex items-center justify-center shadow-lg transition-transform duration-200 hover:scale-110 hover:shadow-xl cursor-pointer"
+              style={{ width: 60, height: 60 }}
+            >
+              <img
+                src="https://upload.wikimedia.org/wikipedia/commons/0/05/Facebook_Logo_%282019%29.png"
+                alt="Facebook"
+                className="w-[30px] h-[30px]"
+                style={{ width: 30, height: 30 }}
+              />
+            </div>
+          </div>
+
           {erro && <p style={{ color: "red" }}>{erro}</p>}
 
           <div className="text-center pt-4">
@@ -67,7 +101,7 @@ export function Login() {
             to="/register"
             className="text-blue-600 hover:underline"
           >
-            Faça seu cadastro
+            Não tem uma conta? <strong>Cadastre-se</strong>
           </Link>
         </div>
       </div>

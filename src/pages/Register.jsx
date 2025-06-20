@@ -29,7 +29,7 @@ export function Register() {
                 </div>
 
                 <div className="pt-6 pb-4">
-                    <Title title="Bem-vindo de volta" />
+                    <Title title="Efetue seu cadastro" />
                 </div>
 
                 <form onSubmit={handleSubmit}>
@@ -63,6 +63,31 @@ export function Register() {
                             onChange={e => setSenha(e.target.value)}
                         />
                     </div>
+
+                    <div className="flex justify-center gap-6 pb-4">
+            <div
+              className="rounded-full flex items-center justify-center shadow-lg transition-transform duration-200 hover:scale-110 hover:shadow-xl cursor-pointer"
+              style={{ width: 60, height: 60 }}
+            >
+              <img
+                src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg"
+                alt="Google"
+                className="w-[30px] h-[30px]"
+                style={{ width: 30, height: 30 }}
+              />
+            </div>
+            <div
+              className="rounded-full flex items-center justify-center shadow-lg transition-transform duration-200 hover:scale-110 hover:shadow-xl cursor-pointer"
+              style={{ width: 60, height: 60 }}
+            >
+              <img
+                src="https://upload.wikimedia.org/wikipedia/commons/0/05/Facebook_Logo_%282019%29.png"
+                alt="Facebook"
+                className="w-[30px] h-[30px]"
+                style={{ width: 30, height: 30 }}
+              />
+            </div>
+          </div>
 
                     {erro && <p style={{ color: "red" }}>{erro}</p>}
 
