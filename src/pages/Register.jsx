@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Navbar, Logo, Title, Input, Button } from "../components";
+import { Navbar, Logo2, Title, Input, Button } from "../components";
 import { Link, useNavigate } from "react-router-dom";
 import { signUp } from "../services/authService";
 
@@ -25,7 +25,7 @@ export function Register() {
         <>
             <div className="max-w-md mx-auto p-4">
                 <div className="text-center">
-                    <Logo />
+                    <Logo2 />
                 </div>
 
                 <div className="pt-6 pb-4">
