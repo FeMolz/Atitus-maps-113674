@@ -6,7 +6,7 @@ export function Navbar() {
 
     return (
         <header className="navbar">
-            <div>Nome do aplicativo</div>
+            <div>CarGas & Driving</div>
             <button className="close" onClick={logout}>X</button>
         </header>
     );
