@@ -1,49 +1,15 @@
 import axios from 'axios';
 
-const BASE_URL = 'https://passing-agatha-atitus-0ca94c8f.koyeb.app/ws/point';
+const BASE_URL = 'https://ripe-donella-atitus-fbbf314a.koyeb.app';
 
-
-
+// Buscar todos os pontos
 export async function getPoints(token) {
   try {
-    const response = await axios.get(BASE_URL, {
+    const response = await axios.get(`${BASE_URL}/points`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     });
-
-    // Mocked response
-    /*
-    const response = {
-      status: 200,
-      data: [
-      {
-        id: 1,
-        descricao: 'Avenida Paulista',
-        latitude: -23.561684,
-        longitude: -46.656139,
-      },
-      {
-        id: 2,
-        descricao: 'Parque Ibirapuera',
-        latitude: -23.587416,
-        longitude: -46.657634,
-      },
-      {
-        id: 3,
-        descricao: 'Mercadão Municipal',
-        latitude: -23.541212,
-        longitude: -46.627684,
-      },
-      {
-        id: 4,
-        descricao: 'Estação da Luz',
-        latitude: -23.536578,
-        longitude: -46.633309,
-      },
-      ],
-    };
-    */
 
     // o objeto response.data possui os campos latitude e longitude mas precisamos mudar os nomes para lat lng
     const points = response.data.map(point => ({
@@ -65,30 +31,85 @@ export async function getPoints(token) {
   }
 }
 
-export async function postPoint(token, pointData) {
+// Buscar um ponto específico
+export async function getPointById(token, id) {
   try {
-    const response = await axios.post(BASE_URL, pointData, {
+    const response = await axios.get(`${BASE_URL}/points/${id}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     });
 
-    // Mocked response
-    /*
-    const response = {
-      status: 200,
-      data: {
-      id: Math.floor(Math.random() * 10000),
-      ...pointData,
+    if (response.status === 200) {
+      return {
+        id: response.data.id,
+        title: response.data.descricao,
+        position: {
+          lat: response.data.latitude,
+          lng: response.data.longitude,
+        },
+      };
+    } else {
+      throw new Error('Erro ao buscar ponto');
+    }
+  } catch (error) {
+    throw new Error(error.response?.data?.message || 'Erro ao buscar ponto');
+  }
+}
+
+// Criar um novo ponto
+export async function postPoint(token, pointData) {
+  try {
+    const response = await axios.post(`${BASE_URL}/points`, pointData, {
+      headers: {
+        Authorization: `Bearer ${token}`,
       },
-    };
-    */
-    if (response.status === 201) {
+    });
+
+    if (response.status === 201 || response.status === 200) {
       return response.data;
     } else {
       throw new Error('Erro ao cadastrar ponto');
     }
   } catch (error) {
     throw new Error(error.response?.data?.message || 'Erro ao cadastrar ponto');
+  }
+}
+
+// Atualizar um ponto
+export async function updatePoint(token, id, pointData) {
+  try {
+    const response = await axios.put(`${BASE_URL}/points/${id}`, pointData, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    if (response.status === 200) {
+      return response.data;
+    } else {
+      throw new Error('Erro ao atualizar ponto');
+    }
+  } catch (error) {
+    throw new Error(error.response?.data?.message || 'Erro ao atualizar ponto');
+  }
+}
+
+// Deletar um ponto
+export async function deletePoint(token, id) {
+  try {
+    const response = await axios.delete(`${BASE_URL}/points/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    if (response.status === 204) {
+      return;
+    } else {
+      throw new Error('Erro ao deletar ponto');
+    }
+  } catch (error) {
+    throw new Error(error.response?.data?.message || 'Erro ao deletar ponto');
   }
 }
