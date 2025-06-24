@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Navbar } from "../components";
+import { Navbar, BottomNavbar } from "../components";
 import { GoogleMap, Marker, InfoWindow, useJsApiLoader } from "@react-google-maps/api";
 import { getPoints, postPoint } from '../services/mapService';
 import { useAuth } from "../contexts/AuthContext";
@@ -165,6 +165,7 @@ export const Map = () => {
           </div>
         )}
       </div>
+      <BottomNavbar /> {/* Adicione aqui */}
     </>
   );
 };

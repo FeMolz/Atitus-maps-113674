@@ -34,7 +34,7 @@ export async function getPoints(token) {
 // Buscar um ponto específico
 export async function getPointById(token, id) {
   try {
-    const response = await axios.get(`${BASE_URL}/points/${id}`, {
+    const response = await axios.get(`${BASE_URL}/ws/points/${id}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -60,7 +60,7 @@ export async function getPointById(token, id) {
 // Criar um novo ponto
 export async function postPoint(token, pointData) {
   try {
-    const response = await axios.post(`${BASE_URL}/points`, pointData, {
+    const response = await axios.post(`${BASE_URL}/ws/point`, pointData, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -79,7 +79,7 @@ export async function postPoint(token, pointData) {
 // Atualizar um ponto
 export async function updatePoint(token, id, pointData) {
   try {
-    const response = await axios.put(`${BASE_URL}/points/${id}`, pointData, {
+    const response = await axios.put(`${BASE_URL}/ws/point/${id}`, pointData, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -98,7 +98,7 @@ export async function updatePoint(token, id, pointData) {
 // Deletar um ponto
 export async function deletePoint(token, id) {
   try {
-    const response = await axios.delete(`${BASE_URL}/points/${id}`, {
+    const response = await axios.delete(`${BASE_URL}/ws/point/${id}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },

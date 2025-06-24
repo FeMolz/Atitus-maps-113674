@@ -5,5 +5,7 @@ import { Logo2 } from './Logo2';
 import { Navbar } from './Navbar';
 import { Title } from './Title';
 import { PrivateRoute } from './PrivateRoute';
+import { BottomNavbar } from './BottomNavbar';
 
-export { Button, Input, Logo, Logo2, Navbar, Title, PrivateRoute };
+
+export { Button, Input, Logo, Logo2, Navbar, Title, PrivateRoute, BottomNavbar };
