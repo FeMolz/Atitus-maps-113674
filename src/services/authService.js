@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'https://ripe-donella-atitus-fbbf314a.koyeb.app';
+const API_URL = 'https://api-vehicle-rentals.onrender.com';
 
 export async function signIn(email, password) {
   try {

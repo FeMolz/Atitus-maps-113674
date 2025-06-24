@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const BASE_URL = 'https://ripe-donella-atitus-fbbf314a.koyeb.app';
+const BASE_URL = 'https://api-vehicle-rentals.onrender.com';
 
 // Buscar todos os pontos
 export async function getPoints(token) {
