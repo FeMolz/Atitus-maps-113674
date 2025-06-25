@@ -70,6 +70,7 @@ export default function CadastrarCarro() {
               value={modelo}
               onChange={e => setModelo(e.target.value)}
               required
+              maxLength={100} // Limite de 100 caracteres
               style={{
                 width: "100%",
                 padding: "10px 12px",
@@ -90,6 +91,7 @@ export default function CadastrarCarro() {
               value={placa}
               onChange={e => setPlaca(e.target.value)}
               required
+              maxLength={8} // Limite de 8 caracteres
               style={{
                 width: "100%",
                 padding: "10px 12px",
@@ -106,12 +108,10 @@ export default function CadastrarCarro() {
               Ano:
             </label>
             <input
-              type="number"
+              type="date" // Campo de data
               value={ano}
               onChange={e => setAno(e.target.value)}
               required
-              min="1900"
-              max={new Date().getFullYear()}
               style={{
                 width: "100%",
                 padding: "10px 12px",
