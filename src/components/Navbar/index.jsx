@@ -1,5 +1,6 @@
 import "./navbar.css";
 import { useAuth } from "../../contexts/AuthContext";
+import { useNavigate } from "react-router-dom"; // adicione esta linha
 
 // Exemplos de SVG inline para os ícones
 const SearchIcon = () => (
@@ -21,19 +22,9 @@ const FilterIcon = () => (
   </svg>
 );
 
-const ListIcon = () => (
-  <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-    <line x1="8" y1="6" x2="21" y2="6" />
-    <line x1="8" y1="12" x2="21" y2="12" />
-    <line x1="8" y1="18" x2="21" y2="18" />
-    <circle cx="4" cy="6" r="2" />
-    <circle cx="4" cy="12" r="2" />
-    <circle cx="4" cy="18" r="2" />
-  </svg>
-);
-
 export function Navbar() {
     const { logout } = useAuth();
+    const navigate = useNavigate(); // adicione esta linha
 
     return (
         <header className="navbar">
@@ -43,13 +34,9 @@ export function Navbar() {
                     <SearchIcon />
                     <span>Buscar</span>
                 </button>
-                <button>
+                <button onClick={() => navigate("/cadastrar-carro")}>
                     <FilterIcon />
-                    <span>Filtrar</span>
-                </button>
-                <button>
-                    <ListIcon />
-                    <span>Listar</span>
+                    <span>Cadastrar carro</span>
                 </button>
             </div>
             <button className="close" onClick={logout}>X</button>
