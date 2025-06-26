@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { Navbar, Logo2, Title, Input, Button } from "../components";
 import { Link, useNavigate } from "react-router-dom";
-import { signUp } from "../services/authService";
+import { signUp, signIn } from "../services/authService";
+import { useAuth } from "../contexts/AuthContext";
 
 export function Register() {
     const [name, setName] = useState("");
@@ -9,13 +10,14 @@ export function Register() {
     const [senha, setSenha] = useState("");
     const [erro, setErro] = useState("");
     const navigate = useNavigate();
+    const { login } = useAuth();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         setErro("");
         try {
             await signUp(name, email, senha);
-            navigate("/login");
+            navigate("/login"); // Volta para tela de login após cadastro
         } catch (err) {
             setErro(err.message);
         }
