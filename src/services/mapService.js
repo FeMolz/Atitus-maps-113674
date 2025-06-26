@@ -5,19 +5,19 @@ const BASE_URL = 'https://api-vehicle-rentals.onrender.com';
 // Buscar todos os pontos
 export async function getPoints(token) {
   try {
-    const response = await axios.get(`${BASE_URL}/points`, {
+    const response = await axios.get(`${BASE_URL}/ws/point?`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
     });
 
-    // o objeto response.data possui os campos latitude e longitude mas precisamos mudar os nomes para lat lng
+    
     const points = response.data.map(point => ({
       id: point.id,
-      title: point.descricao,
+      title: point.descricao || point.description || "Sem descrição",
       position: {
-        lat: point.latitude,
-        lng: point.longitude,
+        lat: point.latitude || point.lat,
+        lng: point.longitude || point.lng,
       },
     }));
 
@@ -104,7 +104,7 @@ export async function deletePoint(token, id) {
       },
     });
 
-    if (response.status === 204) {
+    if (response.status === 204 || response.status === 200) {
       return;
     } else {
       throw new Error('Erro ao deletar ponto');

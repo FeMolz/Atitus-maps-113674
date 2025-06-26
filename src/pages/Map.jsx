@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Navbar, BottomNavbar } from "../components";
 import { GoogleMap, Marker, InfoWindow, useJsApiLoader } from "@react-google-maps/api";
-import { getPoints, postPoint } from '../services/mapService';
+import { getPoints, postPoint, deletePoint } from '../services/mapService';
 import { useAuth } from "../contexts/AuthContext";
 
 const containerStyle = {
@@ -74,29 +74,51 @@ export const Map = () => {
 
   // Ao confirmar a descrição, cadastra o ponto
   const handleAddPoint = async () => {
-    if (!description.trim()) return;
+    if (!description || !description.trim()) {
+      alert('A descrição do ponto é obrigatória!');
+      return;
+    }
     const newPoint = {
       latitude: pendingPosition.lat,
       longitude: pendingPosition.lng,
-      description,
+      lat: pendingPosition.lat,
+      lng: pendingPosition.lng,
+      descricao: description.trim(),
+      description: description.trim(),
     };
     try {
       const savedPoint = await postPoint(token, newPoint);
       const savedMarker = {
         id: savedPoint.id,
-        title: savedPoint.description || "Novo Ponto",
+        title: savedPoint.descricao || savedPoint.description || "Novo Ponto",
         position: {
-          lat: savedPoint.latitude,
-          lng: savedPoint.longitude,
+          lat: savedPoint.latitude || savedPoint.lat,
+          lng: savedPoint.longitude || savedPoint.lng,
         },
       };
       setMarkers((prev) => [...prev, savedMarker]);
       setShowInput(false);
       setPendingPosition(null);
       setDescription("");
-      setSelectedMarker(savedMarker); // Seleciona o novo marcador para mostrar a descrição
+      setSelectedMarker(savedMarker);
     } catch (error) {
-      alert(JSON.stringify(error));
+      if (error.response) {
+        console.error('Erro ao salvar ponto:', error.response.status, error.response.data, error);
+        alert('Erro ao salvar ponto: ' + (error.response.data?.message || JSON.stringify(error.response.data) || error.message));
+      } else {
+        console.error('Erro ao salvar ponto:', error);
+        alert('Erro ao salvar ponto: ' + error.message);
+      }
+    }
+  };
+
+  const handleDeletePoint = async (id) => {
+    try {
+      await deletePoint(token, id);
+      setMarkers((prev) => prev.filter((marker) => marker.id !== id));
+      setSelectedMarker(null);
+    } catch (error) {
+      alert('Erro ao remover ponto: ' + error.message);
     }
   };
 
@@ -145,6 +167,23 @@ export const Map = () => {
                   <span style={{ color: "#374151", fontSize: 15 }}>
                     {selectedMarker.title}
                   </span>
+                  <button
+                    onClick={() => handleDeletePoint(selectedMarker.id)}
+                    style={{
+                      marginTop: 12,
+                      background: "#ef4444",
+                      color: "#fff",
+                      border: "none",
+                      borderRadius: 6,
+                      padding: "8px 18px",
+                      fontWeight: "bold",
+                      fontSize: 15,
+                      cursor: "pointer",
+                      transition: "background 0.2s",
+                    }}
+                  >
+                    Remover
+                  </button>
                 </div>
               </InfoWindow>
             )}
