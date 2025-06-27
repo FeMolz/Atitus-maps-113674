@@ -1,8 +1,8 @@
 import "./navbar.css";
 import { useAuth } from "../../contexts/AuthContext";
-import { useNavigate } from "react-router-dom"; // adicione esta linha
+import { useNavigate } from "react-router-dom";
+import LogoCargasDrive from "../LogoCargasDrive";
 
-// Exemplos de SVG inline para os ícones
 const SearchIcon = () => (
   <svg width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
     <circle cx="11" cy="11" r="7" />
@@ -24,23 +24,29 @@ const FilterIcon = () => (
 
 export function Navbar() {
     const { logout } = useAuth();
-    const navigate = useNavigate(); // adicione esta linha
+    const navigate = useNavigate();
 
     return (
-        <header className="navbar">
-            <div>CarGas & Driving</div>
-            <div className="navbar-actions">
-                <button>
-                    <SearchIcon />
-                    <span>Buscar</span>
-                </button>
-                <button onClick={() => navigate("/cadastrar-carro")}>
-                    <FilterIcon />
-                    <span>Cadastrar carro</span>
-                </button>
+        <>
+            <div className="navbar-floating-title-mini" style={{ background: 'transparent', boxShadow: 'none', padding: 0, top: 0, position: 'fixed' }}>
+                <LogoCargasDrive />
             </div>
-            <button className="close" onClick={logout}>X</button>
-        </header>
+            <aside className="sidebar-navbar">
+                <div className="sidebar-actions">
+                    <button>
+                        <SearchIcon />
+                    </button>
+                    <div className="sidebar-action-group">
+                        <button onClick={() => navigate("/cadastrar-carro")}> 
+                            <FilterIcon />
+                        </button>
+                        <span className="sidebar-action-label">Cadastro de veículos</span>
+                    </div>
+                </div>
+                <button className="close" onClick={logout}>X</button>
+                <span className="sidebar-logout-info">Clique para sair da sua conta</span>
+            </aside>
+        </>
     );
 }
 

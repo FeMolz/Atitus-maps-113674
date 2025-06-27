@@ -1,8 +1,9 @@
 import React, { useState } from "react";
-import { Navbar, Logo, Title, Input, Button } from "../components";
+import { Navbar, Title, Input, Button } from "../components";
 import { signIn } from "../services/authService";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../contexts/AuthContext";
+import LogoCargasDrive from "../components/LogoCargasDrive";
 
 export function Login() {
   const [email, setEmail] = useState("");
@@ -27,7 +28,9 @@ export function Login() {
     <>
       <div className="max-w-md mx-auto p-4">
         <div className="text-center">
-          <Logo />
+          <div style={{ width: "100%", paddingTop: 18, marginBottom: 8 }}>
+            <LogoCargasDrive />
+          </div>
         </div>
 
         <div className="pt-6 pb-4">
@@ -61,32 +64,6 @@ export function Login() {
             <Link to="/forgot-password" className="text-blue-600 hover:underline">
               Esqueci minha senha
             </Link>
-          </div>
-
-          {/* Redes sociais lado a lado */}
-          <div className="flex justify-center gap-6 pb-4">
-            <div
-              className="rounded-full flex items-center justify-center shadow-lg transition-transform duration-200 hover:scale-110 hover:shadow-xl cursor-pointer"
-              style={{ width: 60, height: 60 }}
-            >
-              <img
-                src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg"
-                alt="Google"
-                className="w-[30px] h-[30px]"
-                style={{ width: 30, height: 30 }}
-              />
-            </div>
-            <div
-              className="rounded-full flex items-center justify-center shadow-lg transition-transform duration-200 hover:scale-110 hover:shadow-xl cursor-pointer"
-              style={{ width: 60, height: 60 }}
-            >
-              <img
-                src="https://upload.wikimedia.org/wikipedia/commons/0/05/Facebook_Logo_%282019%29.png"
-                alt="Facebook"
-                className="w-[30px] h-[30px]"
-                style={{ width: 30, height: 30 }}
-              />
-            </div>
           </div>
 
           {erro && <p style={{ color: "red" }}>{erro}</p>}

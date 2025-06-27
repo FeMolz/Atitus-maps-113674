@@ -44,3 +44,175 @@
 .navbar-actions button:hover {
     background: #f2f2f2;
 }
+
+/* Sidebar Navbar estilizada */
+.sidebar-navbar {
+    position: fixed;
+    top: 0; /* agora começa no topo */
+    left: 0;
+    width: 64px;
+    height: 50vh; /* vai até metade da tela */
+    background-color: #fff;
+    color: #000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 16px 0;
+    box-shadow: 2px 0 12px rgba(0,0,0,0.08);
+    z-index: 1000;
+    gap: 24px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-top-right-radius: 18px;
+    border-bottom-right-radius: 18px;
+}
+
+.sidebar-title {
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    letter-spacing: 2px;
+    color: #2563eb;
+}
+
+.sidebar-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    margin-bottom: auto;
+}
+
+.sidebar-action-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+}
+
+.sidebar-action-label {
+    font-size: 11px;
+    color: #2563eb;
+    font-weight: 600;
+    text-align: center;
+    margin-top: 2px;
+    max-width: 60px;
+    word-break: break-word;
+}
+
+.sidebar-actions button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 8px;
+    transition: background 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sidebar-actions button:hover {
+    background: #f3f4f6;
+}
+
+.close {
+    background: #ef4444;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 16px;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.close:hover {
+    background: #dc2626;
+}
+
+/* Barra superior centralizada e compacta */
+.navbar-top-centered {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 40px;
+    background-color: #fff;
+    color: #2563eb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+}
+
+.navbar-title-centered {
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    color: #2563eb;
+}
+
+/* Corrige sobreposição do título flutuante na parte superior */
+.navbar-floating-title {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #fff;
+    color: #2563eb;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    padding: 6px 18px;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    z-index: 1100;
+}
+
+/* Título flutuante pequeno e centralizado */
+.navbar-floating-title-mini {
+    position: fixed;
+    top: 18px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #fff;
+    color: #2563eb;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    padding: 4px 14px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    z-index: 1100;
+    pointer-events: none; /* impede clique e evita bloqueio de interação */
+}
+
+/* Garante que o conteúdo não fique atrás do título flutuante */
+@media (max-width: 600px) {
+  body, #root, .App, .main-content {
+    padding-top: 0 !important;
+  }
+}
+
+/* Remove padding extra do topo em telas grandes também */
+body, #root, .App, .main-content {
+  padding-top: 0 !important;
+}
+
+.sidebar-logout-info {
+    margin-top: 8px;
+    font-size: 11px;
+    color: #2563eb; /* mesma cor do texto de cadastro de veículos */
+    text-align: center;
+    max-width: 60px;
+    word-break: break-word;
+    opacity: 0.85;
+}

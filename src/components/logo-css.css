@@ -1,0 +1,80 @@
+.logo-css-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.logo-car {
+  position: relative;
+  width: 60px;
+  height: 28px;
+  margin-bottom: 0px;
+}
+.logo-car-body {
+  position: absolute;
+  left: 6px;
+  top: 10px;
+  width: 48px;
+  height: 12px;
+  background: #1e293b;
+  border-radius: 8px 16px 16px 8px/8px 16px 16px 8px;
+}
+.logo-car-wheel {
+  position: absolute;
+  bottom: -4px;
+  width: 12px;
+  height: 12px;
+  background: #1e293b;
+  border-radius: 50%;
+  border: 2px solid #fff;
+}
+.logo-car-wheel.left {
+  left: 2px;
+}
+.logo-car-wheel.right {
+  right: 2px;
+}
+
+.logo-pin {
+  position: absolute;
+  left: 50%;
+  top: 2px;
+  transform: translateX(-50%);
+  width: 32px;
+  height: 32px;
+  z-index: 2;
+}
+.logo-pin-inner {
+  position: relative;
+  width: 32px;
+  height: 32px;
+  background: #1e293b;
+  border-radius: 50% 50% 50% 50%/60% 60% 100% 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.logo-car-icon {
+  width: 16px;
+  height: 10px;
+  border-radius: 2px 4px 4px 2px/2px 4px 4px 2px;
+  background: #fff;
+  margin-top: 8px;
+}
+
+.logo-title {
+  margin-top: 38px;
+  font-size: 1.5rem;
+  font-family: 'Inter', Arial, sans-serif;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+}
+.logo-bold {
+  font-weight: 700;
+  color: #222;
+}
+.logo-blue {
+  color: #2563eb;
+  font-weight: 700;
+}
